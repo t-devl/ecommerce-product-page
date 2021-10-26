@@ -2,16 +2,17 @@
 
 .header {
   display: flex;
+  z-index: 10;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   padding: 1rem 1.5rem;
   background-color: $white;
-  z-index: 10;
 }
 
 .header__overlay {
   position: fixed;
+  z-index: 10;
   top: 0;
   left: 0;
   width: 100%;
@@ -45,6 +46,7 @@
   height: 100%;
   padding: 1.5rem;
   background-color: $white;
+  z-index: 10;
 
   &--active {
     display: block;
