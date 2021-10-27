@@ -99,22 +99,25 @@
   .gallery__thumbnail {
     position: relative;
     overflow: hidden;
+    border: 1px solid transparent;
     border-radius: 10px;
     cursor: pointer;
 
+    &:hover::after,
+    &:focus::after,
+    &--active::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: $white;
+      opacity: 60%;
+    }
+
     &--active {
       border: 1px solid $orange;
-
-      &::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: $white;
-        opacity: 60%;
-      }
     }
   }
 
