@@ -1,0 +1,125 @@
+@import "../../styles/variables";
+
+.lightbox-container {
+  display: none;
+}
+
+@media (min-width: 750px) {
+  .lightbox-container {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: transparentize($black, 0.25);
+  }
+
+  .lightbox {
+    position: relative;
+    text-align: right;
+  }
+
+  .lightbox__close-btn {
+    border: none;
+    margin-bottom: 1rem;
+    background: none;
+    cursor: pointer;
+
+    &:hover path,
+    &:focus path {
+      fill: $orange;
+    }
+  }
+
+  .lightbox__close-icon {
+    display: block;
+  }
+
+  .lightbox__display {
+    overflow: hidden;
+    width: 390px;
+    border-radius: 10px;
+  }
+
+  .lightbox__arrow-btn {
+    position: absolute;
+    z-index: 1;
+    top: 175px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: $light-greyish-blue;
+    cursor: pointer;
+
+    &:hover path,
+    &:focus path {
+      stroke: $orange;
+    }
+
+    &--left {
+      left: -20px;
+    }
+
+    &--right {
+      right: -20px;
+    }
+  }
+
+  .lightbox__arrow-icon {
+    display: block;
+    margin: auto;
+  }
+
+  .lightbox__images-container {
+    display: flex;
+    height: 390px;
+    transition: all 0.2s ease-out;
+  }
+
+  .lightbox__image {
+    display: block;
+    width: 100%;
+  }
+
+  .lightbox__thumbnails-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 2rem 0;
+  }
+
+  .lightbox__thumbnail {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+
+    &:hover::after,
+    &:focus::after,
+    &--active::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: $white;
+      opacity: 60%;
+    }
+
+    &--active {
+      border: 1px solid $orange;
+    }
+  }
+
+  .lightbox__thumbnail-image {
+    display: block;
+    width: 60px;
+  }
+}

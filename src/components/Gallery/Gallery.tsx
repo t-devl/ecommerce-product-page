@@ -10,9 +10,11 @@ import thumbnail4 from "../../images/image-product-4-thumbnail.jpg";
 import previous from "../../images/icon-previous.svg";
 import next from "../../images/icon-next.svg";
 import { useState } from "react";
+import Lightbox from "../Lightbox/Lightbox";
 
 export default function Gallery() {
   const [currentImage, setCurrentImage] = useState<number>(1);
+  const [isLightboxActive, setIsLightboxActive] = useState<boolean>(false);
 
   const previousImage = () => {
     if (currentImage > 1) {
@@ -26,14 +28,17 @@ export default function Gallery() {
     }
   };
 
-  const changeCurrentImage = (index: number) => {
-    if (currentImage !== index) {
-      setCurrentImage(index);
-    }
-  };
-
   return (
     <div className="gallery">
+      {isLightboxActive ? (
+        <Lightbox
+          imageClicked={currentImage}
+          setIsActive={setIsLightboxActive}
+        ></Lightbox>
+      ) : (
+        ""
+      )}
+
       <div className="gallery__display">
         <button
           className="gallery__arrow-btn gallery__arrow-btn--left"
@@ -46,6 +51,7 @@ export default function Gallery() {
           style={{
             transform: `translateX(calc(-100% * ${currentImage - 1}))`,
           }}
+          onClick={() => setIsLightboxActive(true)}
         >
           <img className="gallery__image" src={image1}></img>
           <img className="gallery__image" src={image2}></img>
