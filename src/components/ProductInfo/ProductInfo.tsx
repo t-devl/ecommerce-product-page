@@ -4,7 +4,11 @@ import plus from "../../images/icon-plus.svg";
 import cart from "../../images/icon-cart.svg";
 import { useState } from "react";
 
-export default function ProductInfo() {
+interface Props {
+  addToCart: (num: number) => void;
+}
+
+export default function ProductInfo({ addToCart }: Props) {
   const [quantity, setQuantity] = useState(0);
 
   const decreaseQuantity = () => {
@@ -41,7 +45,10 @@ export default function ProductInfo() {
             <img className="controls__quantity-icon" src={plus}></img>
           </button>
         </div>
-        <button className="controls__add-btn">
+        <button
+          className="controls__add-btn"
+          onClick={() => addToCart(quantity)}
+        >
           <img className="controls__cart-icon" src={cart}></img>Add to cart
         </button>
       </div>

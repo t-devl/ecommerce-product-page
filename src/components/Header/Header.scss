@@ -84,6 +84,7 @@
 }
 
 .header__right {
+  position: relative;
   display: flex;
 }
 
@@ -92,10 +93,21 @@
   border: none;
   cursor: pointer;
 
-  &:hover,
-  &:focus {
+  &:hover .header__cart-icon,
+  &:focus .header__cart-icon {
     filter: brightness(0);
   }
+}
+
+.header__cart-quantity {
+  position: absolute;
+  font-size: 0.6rem;
+  font-weight: 700;
+  border-radius: 10px;
+  color: $white;
+  background-color: $orange;
+  padding: 0 0.4rem;
+  top: 0;
 }
 
 .header__cart-icon {

@@ -5,9 +5,27 @@ import logo from "../../images/logo.svg";
 import cart from "../../images/icon-cart.svg";
 import avatar from "../../images/image-avatar.png";
 import { useState } from "react";
+import Cart from "../Cart/Cart";
 
-export default function Header() {
+interface Props {
+  numberOfItemsInCart: number;
+  setNumberOfItemsInCart: (num: number) => void;
+}
+
+export default function Header({
+  numberOfItemsInCart,
+  setNumberOfItemsInCart,
+}: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
+
+  const toggleCart = () => {
+    if (isCartOpen) {
+      setIsCartOpen(false);
+    } else {
+      setIsCartOpen(true);
+    }
+  };
 
   return (
     <header className="header">
@@ -59,8 +77,25 @@ export default function Header() {
       </div>
       <div className="header__right">
         <button className="header__cart-btn">
-          <img className="header__cart-icon" src={cart}></img>
+          <img
+            className="header__cart-icon"
+            src={cart}
+            onClick={toggleCart}
+          ></img>
+          {numberOfItemsInCart ? (
+            <span className="header__cart-quantity">{numberOfItemsInCart}</span>
+          ) : (
+            ""
+          )}
         </button>
+        {isCartOpen ? (
+          <Cart
+            numberOfItems={numberOfItemsInCart}
+            setNumberOfItems={setNumberOfItemsInCart}
+          ></Cart>
+        ) : (
+          ""
+        )}
         <img className="header__avatar" src={avatar}></img>
       </div>
     </header>
