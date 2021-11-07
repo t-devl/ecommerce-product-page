@@ -15,6 +15,12 @@
   border: none;
   border-radius: 50%;
   background: $light-greyish-blue;
+  cursor: pointer;
+
+  &:hover path,
+  &:focus path {
+    stroke: $orange;
+  }
 
   &--left {
     left: 1rem;
